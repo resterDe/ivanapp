@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="Access-Control-Allow-Origin" content="*" />
+  <title>小店预约</title>
+  <!--cdn连接-->
+  <link rel="stylesheet" type="text/css" href="https://www.layuicdn.com/layui/css/layui.css" />
+   <!--jquery-->
+  <script src="./static/jquery/jquery-3.3.1.min.js"></script>
+  <!--forward css-->
+  <link rel="stylesheet" type="text/css" href="./static/css/forward.css" />
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+  <!--搜索框-->
+  <div class="layui-form">
+    <div class="layui-form-item forward-search">
+        <button class="layui-btn" type="button" lay-submit lay-filter="formDemo" id="key"><i class="layui-icon layui-icon-search"></i>
+        </button>
+        <div class="layui-input-inline">
+            <input type="text" name="keyword" id="keyword" required value=""
+                   lay-verify="phone"
+                   placeholder="请输入预约电话"
+                   autocomplete="off" class="layui-input">
+        </div>
+    </div>
+  </div>
+  <!--按钮选项集合-->
+  <div class="btus">
+    <button type="button" class="layui-btn layui-btn-primary" id="all">全部</button>
+    <button type="button" class="layui-btn" id="wps">未拍摄</button>
+    <button type="button" class="layui-btn layui-btn-normal" id="yqp">已取片</button>
+    <button type="button" class="layui-btn layui-btn-warm" id="wqp">未取片</button>
+    <button type="button" class="layui-btn layui-btn-danger" id="yqx">已取消</button>
+    <button type="button" class="layui-btn layui-btn-normal" id="pj">评价</button>
+  </div>
+  <!--表格实体数据渲染内容-->
+  <div class="tables">
+    <table class="layui-table" lay-filter="test" id="demo">
+      <!--由js渲染主体-->
+    </table>
+    <script type="text/html" id="barArray">
+      <!--设置拍摄-->
+      {{#  if(d.photoState === 0){ }}
+      <a class="layui-btn layui-btn-xs" lay-event="editPhotoState">未拍</a>
+      {{#  } else if(d.photoState === 1){ }}
+      <a class="layui-btn layui-btn-disabled layui-btn-xs" lay-event="detail">已拍</a>
+      {{#  } else if(d.photoState === 2){ }}
+      <a class="layui-btn layui-btn-disabled layui-btn-xs" lay-event="detail">取消</a>
+      {{#  } }}
+      <!--设置取片-->
+      {{#  if(d.tfetch === 0){ }}
+      <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="editTfetch">未取</a>
+      {{#  } else if(d.tfetch === 1){ }}
+      <a class="layui-btn layui-btn-disabled layui-btn-xs" lay-event="detail">已取</a>
+      {{#  } }}
+      <!--一直有-->
+      <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    </script>
+  </div>
+</div>
+<script src="https://www.layuicdn.com/layui/layui.js"></script>
+<!--forward js-->
+<script src="./static/js/forward.js"></script>
+<script type="text/html" id="tpl_demo1">
+  {{#  if(d.photoState === 0){ }}
+    未拍摄
+  {{#  } else if(d.photoState === 1){ }}
+    已拍摄
+  {{#  } else if(d.photoState === 2){ }}
+    已取消
+  {{#  } }}
+</script>
+<script type="text/html" id="tpl_demo2">
+  {{#  if(d.tfetch === 0){ }}
+    未取片
+  {{#  } else if(d.tfetch === 1){ }}
+    已取片
+  {{#  } }}
+</script>
+<script type="text/html" id="tpl_demo3">
+  {{#  if(d.postState === 0){ }}
+    到店领取
+  {{#  } else if(d.postState === 1){ }}
+    邮寄
+  {{#  } }}
+</script>
+</body>
+</html>

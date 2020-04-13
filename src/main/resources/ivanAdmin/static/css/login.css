@@ -1,0 +1,31 @@
+*{
+	margin: 0 auto;
+	padding: 0;
+	font-family: 'Microsoft YaHei', serif;
+}
+body{
+	background: url("../images/login.jpg");
+	background-size: cover;
+	padding: 0;
+}
+.admin-form {
+	width: 445px;
+	height: 290px;
+	margin: auto;
+	margin-top: 10%;
+	border: #AAAAAA solid 1px;
+	background-color: #fff;
+	filter:alpha(Opacity=80);
+	-moz-opacity:0.75;
+	opacity: 0.75;
+}
+.layui-form-item{
+	width: 375px;
+	margin-left: auto;
+}
+.font-color span{
+	color: #a7a1a1;
+}
+.admin-form .la:hover{
+	background-color: #FF5722;
+}

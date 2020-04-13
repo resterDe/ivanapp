@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="Access-Control-Allow-Origin" content="*" />
+  <title>编辑套餐</title>
+  <!--cdn连接-->
+  <link rel="stylesheet" type="text/css" href="https://www.layuicdn.com/layui/css/layui.css" />
+   <!--jquery-->
+  <script src="./static/jquery/jquery-3.3.1.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="./static/css/upPhoto.css">
+</head>
+<body class="layui-layout-body">
+  <div class="layui-layout layui-layout-admin">
+    <fieldset class="layui-elem-field layui-field-title" id="title">
+      <script type="text/html" id="titleData">
+        <legend>{{ d.title }}--套餐信息编辑</legend>
+      </script>
+    </fieldset>
+    <div class="layui-collapse" lay-accordion="">
+      <div class="layui-colla-item">
+        <h2 class="layui-colla-title">套餐规格</h2>
+        <div class="layui-colla-content layui-show">
+          <div id="spePhoto"></div>
+        </div>
+      </div>
+      <div class="layui-colla-item">
+        <h2 class="layui-colla-title">封面图</h2>
+        <div class="layui-colla-content">
+          <div class="layui-upload">
+            <button type="button" class="layui-btn" id="test1">上传图片</button>
+            <div id="coverImg"><!--封面数据挂载--></div>
+          </div>
+        </div>
+      </div>
+      <div class="layui-colla-item">
+        <h2 class="layui-colla-title">展示图集</h2>
+        <div class="layui-colla-content">
+          <div class="layui-upload">
+            <button type="button" class="layui-btn" id="test2">多图片上传</button> 
+            <blockquote class="layui-elem-quote layui-quote-nm">
+              预览图：
+              <div class="layui-upload-list" id="demo2">
+                <div id="showList"></div>
+              </div>
+           </blockquote>
+          </div>
+        </div>
+      </div>
+      <div class="layui-colla-item">
+        <h2 class="layui-colla-title">其他基础信息</h2>
+        <div class="layui-colla-content">
+          <div id="allInfo"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://www.layuicdn.com/layui/layui.js"></script>
+  <script src="./static/js/upPhoto.js"></script>
+  <!--规格-->
+  <script type="text/html" id="speData">
+    <table class="layui-table" style="margin: 0px">
+      <colgroup>
+        <col width="100">
+        <col width="80">
+        <col width="10">
+      </colgroup>
+      <thead>
+        <button class="layui-btn layui-btn-normal" onclick="addSpeDom()">添加</button>
+        <tr>
+          <th>规格名称</th>
+          <th>规格价格（元）</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody id="tbody">
+        {{#  layui.each(d.speInfoList, function(index, item){ }}
+        <tr>
+          <td>{{ item.speName }}</td>
+          <td>{{ item.price }}</td>
+          <td>
+            <button class="layui-btn layui-btn-danger layui-btn-xs" onclick="delSpe('{{ item.speId }}')">删除</button>
+            <!-- <button class="layui-btn layui-btn-xs">编辑</button> -->
+          </td>
+        </tr>
+        {{#  }) }}
+        {{#  if(d.speInfoList.length === 0){ }}
+          无数据
+        {{#  } }}
+      </tbody>
+    </table>
+  </script>
+  <!--封面数据-->
+  <script type="text/html" id="coverData">
+    <div class="layui-upload-list" id="">
+      <img class="layui-upload-img" src="http://127.0.0.1:8081{{ d.coverImg }}" id="demo1" style="width: 100px;height: 100px;">
+      <p id="demoText"></p>
+    </div>
+  </script>
+  <!--基础信息-->
+  <script type="text/html" id="infoData">
+    <div class="layui-form layui-form-item">
+      <label class="layui-form-label">服务说明*</label>
+      <div class="layui-input-inline">
+        <input type="text" value="{{ d.photoInfo.serviceInfo }}" readonly name="serviceInfo" required lay-verify="required" placeholder="请输入服务说明" autocomplete="off" class="layui-input">
+      </div>
+      <label class="layui-form-label">造型说明</label>
+      <div class="layui-input-inline">
+        <input type="text" value="{{ d.photoInfo.modelling }}" name="modelling" required lay-verify="required" placeholder="请输入造型说明" autocomplete="off" class="layui-input">
+      </div>
+      <label class="layui-form-label">产品简介*</label>
+      <div class="layui-input-inline">
+        <input type="text" value="{{ d.photoInfo.productInfo }}" readonly name="productInfo" required lay-verify="required" placeholder="请输入产品简介" autocomplete="off" class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form layui-form-item">
+      <label class="layui-form-label">拍摄</label>
+      <div class="layui-input-inline">
+        <input type="text" value="{{ d.photoInfo.shoot }}" name="shoot" required lay-verify="required" placeholder="请输入拍摄信息" autocomplete="off" class="layui-input">
+      </div>
+      <label class="layui-form-label">后期</label>
+      <div class="layui-input-inline">
+        <input type="text" value="{{ d.photoInfo.anaphase }}" name="anaphase" required lay-verify="required" placeholder="请输入后期信息" autocomplete="off" class="layui-input">
+      </div>
+      <label class="layui-form-label">出图</label>
+      <div class="layui-input-inline">
+        <input type="text" value="{{ d.photoInfo.plot }}" name="plot" required lay-verify="required" placeholder="请输入出图信息" autocomplete="off" class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form layui-form-item">
+      <label class="layui-form-label">数据管理</label>
+      <div class="layui-input-block">
+        <input type="text" value="{{ d.photoInfo.afterSale }}" name="afterSale" required lay-verify="required" placeholder="数据管理与售后信息" autocomplete="off" class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item layui-form-text">
+      <label class="layui-form-label">说明</label>
+      <div class="layui-input-block">
+        <input type="text" value="{{ d.photoInfo.explain }}" name="explain" required lay-verify="required" placeholder="请输入说明" autocomplete="off" class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <div class="layui-input-block">
+        <button class="layui-btn" lay-submit lay-filter="saveForm">立即提交</button>
+      </div>
+    </div>
+  </script>
+  <!--预览图-->
+  <script type="text/html" id="showData">
+    {{#  layui.each(d.showList, function(index, item){ }}
+    <img src="http://127.0.0.1:8081{{ item.imgUrl }}" class="layui-upload-img" style="height:100px;width:150px">
+    {{#  }) }}
+    {{#  if(d.showList.length === 0){ }}
+      无数据
+    {{#  } }}
+  </script>
+</body>
+</html>

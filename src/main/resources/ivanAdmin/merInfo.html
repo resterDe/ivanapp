@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>小店基本资料</title>
+    <!--cdn连接-->
+    <link rel="stylesheet" type="text/css" href="https://www.layuicdn.com/layui/css/layui.css" />
+    <!--jquery-->
+    <script src="./static/jquery/jquery-3.3.1.min.js"></script>
+    <script src="https://www.layuicdn.com/layui/layui.js"></script>
+    <!--js-->
+    <script src="./static/js/merInfo.js"></script>
+</head>
+<body class="layui-layout-body">
+  <div class="layui-layout layui-layout-admin">
+    <!-- 内容主体区域 -->
+    <div class="layui-anim layui-anim-up">
+      <fieldset class="layui-elem-field layui-field-title">
+        <legend>安全设置</legend>
+      </fieldset>
+      <div class="layui-tab">
+        <ul class="layui-tab-title">
+          <li class="layui-this">基本资料</li>
+          <li>修改账号密码</li>
+        </ul>
+        <div class="layui-tab-content">
+          <div class="layui-tab-item layui-show" id="merInfo"></div>
+          <script type="text/html" id="merData">
+            <div class="layui-form">
+              <div class="layui-form-item">
+                <label class="layui-form-label">邮箱</label>
+                <div class="layui-input-inline">
+                  <input type="text" value="{{ d.merInfo.email }}" name="email" required lay-verify="required" placeholder="请输入拍摄信息" autocomplete="off" class="layui-input">
+                </div>
+                <label class="layui-form-label">联系方式</label>
+                <div class="layui-input-inline">
+                  <input type="text" value="{{ d.merInfo.merPhone }}" name="merPhone" required lay-verify="required" placeholder="请输入拍摄信息" autocomplete="off" class="layui-input">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">地址</label>
+                <div class="layui-input-block">
+                  <input type="text" value="{{ d.merInfo.merAddress }}" name="merAddress" required lay-verify="required" placeholder="数据管理与售后信息" autocomplete="off" class="layui-input">
+                </div>
+              </div>
+              <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">简介</label>
+                <div class="layui-input-block">
+                  <input type="text" value="{{ d.merInfo.merInfo }}" name="merInfo" required lay-verify="required" placeholder="请输入说明" autocomplete="off" class="layui-input">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <div class="layui-input-block">
+                  <button class="layui-btn" id="updateBtu" type="button"
+                                lay-submit lay-filter="upForm">立即修改
+                        </button>
+                </div>
+              </div>
+            </div>
+          </script>
+          <div class="layui-tab-item">
+            <fieldset class="layui-elem-field layui-field-title">
+              <legend>修改登录密码</legend>
+              <div class="layui-field-box">
+                <script type="text/html" id="accountData">
+                  <div class="layui-form-item">
+                    <label class="layui-form-label">账号</label>
+                    <div class="layui-input-block">
+                      <input type="account" id="account" lay-verify="required"
+                             placeholder="请输入账号" value="{{ d.merAccount }}" class="layui-input"
+                             style="width: 35%">
+                    </div>
+                  </div>
+                </script>
+                  <form class="layui-form">
+                    <div id="merAccount"></div>
+                    <div class="layui-form-item">
+                      <label class="layui-form-label">原密码</label>
+                      <div class="layui-input-block">
+                        <input type="password" id="password" lay-verify="required"
+                               placeholder="请输入原密码" class="layui-input"
+                               style="width: 35%">
+                      </div>
+                    </div>
+                    <div class="layui-form-item">
+                      <label class="layui-form-label">新密码</label>
+                        <div class="layui-input-block">
+                          <input type="password" id="newPassword" lay-verify="required"
+                                 placeholder="请输入新密码" class="layui-input"
+                                 style="width: 35%">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                      <label class="layui-form-label">确认新密码</label>
+                        <div class="layui-input-block">
+                          <input type="password" id="conPassword" lay-verify="required"
+                                 placeholder="请确认新密码" class="layui-input"
+                                 style="width: 35%">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                      <div class="layui-input-block">
+                        <button class="layui-btn" id="updateBtu" type="button"
+                                lay-submit lay-filter="formDemo">立即修改
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

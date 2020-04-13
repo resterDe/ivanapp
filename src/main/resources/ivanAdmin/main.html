@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="Access-Control-Allow-Origin" content="*" />
+  <title>小凡摄影管理平台</title>
+  <!--cdn连接-->
+  <link rel="stylesheet" type="text/css" href="https://www.layuicdn.com/layui/css/layui.css" />
+  <!--jquery-->
+  <script src="./static/jquery/jquery-3.3.1.min.js"></script>
+  <!--main.js-->
+  <script src="./static/js/main.js"></script>
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+  <div class="layui-header">
+    <div class="layui-logo">小凡摄影管理</div>
+    <!-- 头部区域（可配合layui已有的水平导航） -->
+    <ul class="layui-nav layui-layout-right">
+      <li class="layui-nav-item">
+        <a href="javascript:;">
+          <img src="./static/images/1.png" class="layui-nav-img">
+          小凡
+        </a>
+        <dl class="layui-nav-child">
+          <dd><a onclick="myInfo()">基本资料</a></dd>
+        </dl>
+      </li>
+      <li class="layui-nav-item"><a href="javascript:;" onclick="exitLogin()">退出</a></li>
+    </ul>
+  </div>
+  
+  <div class="layui-side layui-bg-black">
+    <div class="layui-side-scroll">
+      <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+      <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+        <li class="layui-nav-item layui-nav-itemed">
+          <a class="" href="javascript:;">预约信息</a>
+          <dl class="layui-nav-child">
+            <dd><a id="athis" href="javascript:;" onclick="myOrder()" class="">小店预约</a></dd>
+            <!-- <dd><a href="javascript:;">新增预约</a></dd> -->
+          </dl>
+        </li>
+        <li class="layui-nav-item layui-nav-itemed">
+          <a href="javascript:;">在线套餐</a>
+          <dl class="layui-nav-child">
+            <dd><a id="bthis" href="javascript:;" onclick="myPhoto()">我的套餐</a></dd>
+            <!-- <dd><a href="javascript:;">列表二</a></dd> -->
+          </dl>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!--内容部分-->
+  <div class="layui-body">
+    <!-- 内容主体区域 -->
+    <iframe src="" id="ifr" frameborder="0" style="width: 100%;height: 102%;"></iframe>
+  </div>
+  
+  <div class="layui-footer">
+    <!-- 底部固定区域 -->
+    《使用小凡后台管理须知》
+  </div>
+</div>
+<script src="https://www.layuicdn.com/layui/layui.js"></script>
+<script>
+  layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element'], function() {
+    var laydate = layui.laydate //日期
+    ,laypage = layui.laypage //分页
+    ,layer = layui.layer //弹层
+    ,table = layui.table //表格
+    ,carousel = layui.carousel //轮播
+    ,upload = layui.upload //上传
+    ,element = layui.element; //元素操作 等等...
+    /*layer弹出一个示例*/
+    layer.msg('欢迎使用小凡摄影后台管理系统');
+  });
+</script>
+</body>
+</html>
