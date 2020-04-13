@@ -1,0 +1,7 @@
+静态文件目录结构
+images
+  cover # 封面图
+    img # 套餐id命名
+  lists
+    photoId[] # 套餐id命名（一般用UUID重命名作为id）
+      imgs[] # 图片集合
